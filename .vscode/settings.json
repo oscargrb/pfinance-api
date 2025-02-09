@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "finanzas",
+            "database": "finanzas_QA",
+            "username": "postgres",
+            "password": "123"
+        }
+    ]
+}
