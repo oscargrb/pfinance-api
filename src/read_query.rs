@@ -1,8 +1,7 @@
 use std::{fs, str::from_utf8};
 
 pub fn read_query(query_name: &str) -> String {
-
-    println!("{}", "./sql_db/".to_owned() + query_name + ".sql");
+    println!("{}", "./src/sql_db/".to_owned() + query_name + ".sql");
 
     let find_query = fs::read("./src/sql_db/".to_owned() + query_name + ".sql").expect("Error");
 
@@ -10,5 +9,5 @@ pub fn read_query(query_name: &str) -> String {
 
     println!("{}", decode_query);
 
-    return  decode_query.to_owned()
+    return decode_query.to_owned();
 }

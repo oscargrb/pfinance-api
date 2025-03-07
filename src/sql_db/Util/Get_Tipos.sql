@@ -1,2 +1,3 @@
-SELECT "ID", "Tipo"
+SELECT "ID",
+    "Tipo"
 FROM "FlujoIngreso"

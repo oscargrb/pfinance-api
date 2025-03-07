@@ -28,6 +28,7 @@ async fn rocket() -> _ {
                 routes::get_data_dashboard,
                 routes::get_data_form_budget,
                 routes::get_data_form_detail,
+                routes::submit_tasa,
                 all_options
             ],
         )

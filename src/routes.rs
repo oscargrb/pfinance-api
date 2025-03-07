@@ -1,7 +1,7 @@
 use crate::db::DbClient;
 use crate::model::{
     Budget, BudgetForm, BudgetSendToForm, Categoria, Dashboard, Detail, DetailForm, FormDataBudget,
-    Response, Resumen, Tipo,
+    Response, Resumen, Tasa, Tipo,
 };
 use crate::read_query::read_query;
 use rocket::serde::json::Json;
@@ -348,6 +348,35 @@ pub async fn get_data_form_detail(
         .collect();
 
     Json(budgets)
+}
+
+// TASAS
+
+#[post("/tasas", data = "<tasa>")]
+pub async fn submit_tasa(tasa: Json<Tasa>, db: &State<DbClient>) -> Json<Response> {
+    let promedio = (tasa.tasa_bcv + tasa.tasa_paralela) / 2.0;
+
+    let _save_tasa =
+        db.0.query(
+            read_query("Tasas/submit_tasa").as_str(),
+            &[
+                &tasa.fecha,
+                &tasa.month,
+                &tasa.year,
+                &tasa.tasa_bcv,
+                &tasa.tasa_paralela,
+                &promedio,
+            ],
+        )
+        .await
+        .unwrap();
+
+    //println!("{}", find_flujo_trabajo.first());
+
+    Json(Response {
+        ok: true,
+        info: String::from("recibida tasa!"),
+    })
 }
 
 async fn get_current_tasa(month: i32, year: i32, db: &State<DbClient>) -> (i32, f64) {

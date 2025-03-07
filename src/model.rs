@@ -95,3 +95,12 @@ pub struct BudgetSendToForm {
     pub tipo: String,
     pub concepto: String,
 }
+
+#[derive(Serialize, Deserialize)]
+pub struct Tasa {
+    pub fecha: String,
+    pub month: i32,
+    pub year: i32,
+    pub tasa_bcv: f64,
+    pub tasa_paralela: f64,
+}
